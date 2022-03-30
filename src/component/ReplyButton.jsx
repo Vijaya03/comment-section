@@ -38,19 +38,21 @@ const ReplyButton = (props) =>{
       user.data.comments.map((item)=>{
           
           if(user.parentUsername == user.compareUserName ? item.user.username == user.compareUserName : item.user.username == user.parentUsername){
-              item.replies.push({
-                  "content":props.inputValue,
-                  "createdAt":yourDate.toISOString().split('T')[0],
-                  "id":Math.random(),
-                  "score":0,
-                  "user":{
-                      "image":{
-                          "png":user.data.currentUser.image.png,
-                          "webp":user.data.currentUser.image.webp
-                      },
-                      "username":user.data.currentUser.username
-                  }
-                })
+               if(props.inputValue !=""){
+                item.replies.push({
+                    "content":props.inputValue,
+                    "createdAt":yourDate.toISOString().split('T')[0],
+                    "id":Math.random(),
+                    "score":0,
+                    "user":{
+                        "image":{
+                            "png":user.data.currentUser.image.png,
+                            "webp":user.data.currentUser.image.webp
+                        },
+                        "username":user.data.currentUser.username
+                    }
+                  })
+                } 
                 user.setCommentReply(false);
           }
       })  
